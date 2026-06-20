@@ -352,12 +352,12 @@ svg { fill: #64748b !important; }
 # ── Models ─────────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_models():
-    base = os.path.join(os.path.dirname(__file__), "models")
-    m = {}
-    for n in ["diabetes_model", "heart_disease_model", "lung_cancer_model", "thyroid_model"]:
-        with open(os.path.join(base, f"{n}.pkl"), "rb") as f:
-            m[n] = pickle.load(f)
-    return m
+    return {
+        "diabetes_model": pickle.load(open("diabetes_model.pkl", "rb")),
+        "heart_disease_model": pickle.load(open("heart_disease_model.pkl", "rb")),
+        "lung_cancer_model": pickle.load(open("lung_cancer_model.pkl", "rb")),
+        "thyroid_model": pickle.load(open("thyroid_model.pkl", "rb"))
+    }
 
 models = load_models()
 
